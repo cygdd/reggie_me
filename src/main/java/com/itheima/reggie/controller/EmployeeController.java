@@ -39,7 +39,7 @@ public class EmployeeController {
         //2、根据页面提交的用户名username查询数据库
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Employee::getUsername,employee.getUsername());
-        Employee emp = employeeService.getOne(queryWrapper);
+        Employee emp = employeeService.getOne(queryWrapper);//相同用户名下数据库里的对象
 
         //3、如果没有查询到则返回登录失败结果
         if(emp == null){

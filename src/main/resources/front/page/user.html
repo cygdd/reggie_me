@@ -33,13 +33,15 @@
             <div class="divLinks">
                 <div class="item" @click="toAddressPage">
                     <img src="./../images/locations.png"/>
-                    <span>地址管理</span>
+<!--                    <span>地址管理</span>-->
+                        <p>地址管理</p>
                     <i class="el-icon-arrow-right"></i>
                 </div>
                 <div class="divSplit"></div>
                 <div class="item" @click="toOrderPage">
                     <img src="./../images/orders.png"/>
-                    <span>历史订单</span>
+<!--                    <span>历史订单</span>-->
+                        <p>历史订单</p>
                     <i class="el-icon-arrow-right"></i>
                 </div>
             </div>
@@ -74,7 +76,7 @@
     <!-- 引入组件库 -->
     <script src="../../backend/plugins/element-ui/index.js"></script>
     <!-- 引入vant组件 -->
-    <script src="./../js/vant.min.js"></script>    
+    <script src="./../js/vant.min.js"></script>
     <!--不同屏幕尺寸根字体设置-->
     <script src="./../js/base.js"></script>
     <!-- 引入axios -->
@@ -117,12 +119,12 @@
                 toAddressPage(){
                     window.requestAnimationFrame(()=>{
                         window.location.href = '/front/page/address.html'
-                    })  
+                    })
                 },
                 toOrderPage(){
                     window.requestAnimationFrame(()=>{
                         window.location.href = '/front/page/order.html'
-                    }) 
+                    })
                 },
                 initData(){
                     this.getLatestOrder()
@@ -173,7 +175,7 @@
                     if(res.code === 1){
                         window.requestAnimationFrame(()=>{
                             window.location.href = '/front/index.html'
-                        }) 
+                        })
                     }else{
                         this.$notify({ type:'warning', message:res.msg});
                     }
@@ -183,10 +185,10 @@
                     if(res.code === 1){
                         window.requestAnimationFrame(()=>{
                             window.location.href = '/front/page/login.html'
-                        }) 
+                        })
                     }else{
                         this.$notify({ type:'warning', message:res.msg});
-                    }                
+                    }
                 }
             }
         })

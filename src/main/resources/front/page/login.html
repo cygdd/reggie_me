@@ -75,7 +75,8 @@
                         this.loading = true
 
                         //const res = await loginApi({phone:this.form.phone})  这里是资料给的代码
-                        const res = await loginApi(this.form)  //这里是自己加的
+                        // const res = await loginApi(this.form)  //这里是自己加的
+                        const res = await loginApi({phone:this.form.phone,code:this.form.code})
                         this.loading = false
                         if(res.code === 1){
                             sessionStorage.setItem("userPhone",this.form.phone)
