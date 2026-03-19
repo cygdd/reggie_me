@@ -17,19 +17,26 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 public class RedisConfig {
-    @Bean("myRedisTemplate")
-    public RedisTemplate<String ,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    @Bean
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        //默认的Key序列化器为：JdkSerializationRedisSerializer
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setConnectionFactory(connectionFactory);
+        return redisTemplate;
+    }
+//    @Bean("myRedisTemplate")
+    /*public RedisTemplate<String ,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
         // 定义一个自己的 String object 类型
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
-//        redisTemplate.setConnectionFactory(redisConnectionFactory);
-//        // 配置Json序列化
-//        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        // 配置Json序列化
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
         // String 序列化
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         // 设置 String key 以 stringRedisSerializer 解析
@@ -37,12 +44,11 @@ public class RedisConfig {
         // 设置 Hash key 以 stringRedisSerializer 解析
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
 
-//        // String value 以Json 解析
-//        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-//        // Hash value  以 Json 解析
-//        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        // String value 以Json 解析
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        // Hash value  以 Json 解析
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
         return redisTemplate;
-    }
+    }*/
 }
 
